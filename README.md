@@ -55,18 +55,20 @@ python bibliofisi.py
 3. Manejo de errores
   - El script maneja excepciones para errores comunes como la falta de conexión, fallos en el acceso a enlaces, o tiempo de espera al cargar elementos de la página.
 
-# Ejemplo de entrada BibTex
+## Ejemplo de entrada BibTex
 
 A continuación, un ejemplo de cómo se vería una entrada BibTeX generada:
 
 ```bibtex
-@thesis{Juan2021,
-  author = {Juan Pérez},
-  advisor = {Andrés López},
-  year = {2021},
-  publisher = {Universidad Nacional Mayor de San Marcos},
-  subject = {Redes de Computadoras, Ciencia de Datos},
-  degree_name = {Ingeniería de Sistemas}
+@thesis{Leguía2002,
+    author = "Leguía García, Guillermo",
+    advisor = "Gil Calvo, Rubén Alexander",
+    year = "2002",
+    title = "Papel de los sistemas de información en la investigación de mercado en empresas de servicios",
+    type = "info:eu-repo/semantics/bachelorThesis",
+    institution = "Universidad Nacional Mayor de San Marcos",
+    subject = "Investigación de mercados, Tecnología de la información, Administración de recursos de información",
+    degree_name = "Ingeniero de Sistemas"
 }
 ```
 

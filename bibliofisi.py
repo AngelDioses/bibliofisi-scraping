@@ -13,7 +13,7 @@ def fetch_thesis_metadata():
     rows = soup.find_all('tr')
     
     # Datos de interés
-    author = advisor = year = publisher = degree_name = None
+    author = advisor = year = title = type_field = institution = degree_name = None
     subject = []
     
     # Extraer la metadata
@@ -28,10 +28,14 @@ def fetch_thesis_metadata():
                 advisor = value
             elif field == "dc.date.issued":
                 year = value
-            elif field == "dc.publisher":
-                publisher = value
+            elif field == "dc.title":
+                title = value
+            elif field == "dc.type":
+                type_field = value
             elif field == "dc.subject":
                 subject.append(value)
+            elif field == "dc.publisher":
+                institution = value
             elif field == "thesis.degree.name":
                 degree_name = value
     
@@ -42,14 +46,15 @@ def fetch_thesis_metadata():
         'author': author or 'No Author',
         'advisor': advisor or 'No Advisor',
         'year': year or 'No Year',
-        'publisher': publisher or 'No Publisher',
+        'title': title or 'No Title',
+        'type': type_field or 'No Type',
+        'institution': institution or 'No Institution',
         'subject': ', '.join(subject) or 'No Subject',
         'degree_name': degree_name or 'No Degree Name'
     }
     return thesis_entry
 
 def save_bibtex_file(metadata, filename="tesis.bib"):
-    
     # Crear el objeto BibliographyData y añadir la entrada
     bib_data = BibliographyData()
     entry = Entry(
@@ -58,7 +63,9 @@ def save_bibtex_file(metadata, filename="tesis.bib"):
             'author': metadata['author'],
             'advisor': metadata['advisor'],
             'year': metadata['year'],
-            'publisher': metadata['publisher'],
+            'title': metadata['title'],         
+            'type': metadata['type'],           
+            'institution': metadata['institution'],  
             'subject': metadata['subject'],
             'degree_name': metadata['degree_name']
         }
@@ -160,5 +167,3 @@ def main():
     driver.quit()
 
 main()
-
-
